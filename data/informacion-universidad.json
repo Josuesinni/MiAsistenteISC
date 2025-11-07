@@ -295,13 +295,116 @@
             "Paso 6": "Después de registrar asistencia en la ubicación diagnóstica, se habilita automáticamente el módulo de inscripciones en la página https://www.itesca.edu.mx/admisiones/}"
         }
     ],
-    "modalidades":"En modalidad presencial y virtual.",
-    "duracionCarrera":"9 semestres",
+    "modalidades": "En modalidad presencial y virtual.",
+    "duracionCarrera": "9 semestres",
     "contactoJefeCarrera": [
         {
             "nombre": "Mtra. Anabel Gutiérrez Espinoza",
             "telefono": "(644) 410-8650 ext. 1301",
             "correo": "isc@itesca.edu.mx"
         }
-    ]
+    ],
+    "plataformaInstitucional": [
+        {
+            "plataformaMoodle": "Consulta la plataforma Moodle implementada en ITESCA: https://cursos2.e-itesca.edu.mx/ead/index.html",
+            "manualEstudiantes": "Consulta aquí el manual para estudiantes: https://www.itesca.edu.mx/modulos/oferta/ead/index.php"
+        }
+    ],
+    "consultaDatosInstitucionales": [
+        {
+            "datosDepartamento": "Dejamos a tu disposición los datos del departamento de Control Escolar, los puedes contactar vía correo electrónico o teléfono: https://www.itesca.edu.mx/modulos/estudiantes/esc-tramites.php",
+            "telefono": "Atención Telefónica: (644) 410 8650 / Extensiones: 1202: Ventanilla, 1204: Licenciatura y Posgrado, 1215: Jefa de Departamento",
+            "email": "E-Mail de contacto: Ventanilla: nvalencia@itesca.edu.mx, Licenciatura y Posgrado: sponce@itesca.edu.mx Jefa de Departamento: promero@itesca.edu.mx",
+            "horario": "08:00 a 15:00 hrs."
+        }
+    ],
+    "consultaCalificaciones": [
+        "Consulta de Calificaciones en Kardex desde el Portal Académico, ingresa con tu matrícula y CIP: https://www.itesca.edu.mx/portalacademico/index.asp",
+        "Boleta impresa de calificaciones finales con el sello del Departamento de Operación y Control Escolar. Consulta aquí los requisitos, los pasos a seguir, el costo y el horario de atención para realizar tu trámite: https://www.itesca.edu.mx/modulos/estudiantes/esc-tramites.php "
+    ],
+    "actividadesExtracurriculares": [
+        {
+            "programaCultura": "Consulta los programas de Cultura en ITESCA en los que puedes participar. https://www.itesca.edu.mx/modulos/programas/cultura.php",
+            "programaDeportes": "Consulta los programas de Deportes en ITESCA en los que puedes participar. https://www.itesca.edu.mx/_sitioanterior/programas/deportes.asp",
+            "programaTodos": "Te invitamos a consultar todos los programas que ITESCA ofrece para ti desde nuestra página web, en el menú superior en el apartado 'Programas'. https://www.itesca.edu.mx/index.php"
+        }
+    ],
+    "sistemaCalificaciones": "Las calificaciones son publicadas por los docentes en el portal académico en el siguiente enlace: https://www.itesca.edu.mx/portalacademico/ Dentro del apartado Consulta de Calificaciones del Período.",
+    "programacion": [
+        {
+            "lenguajesProgramacion": [
+                "HTML",
+                "Java",
+                "JavaScript",
+                "Python",
+                "CSS",
+                "C#",
+                "C++"
+            ],
+            "entornosDeProgramacion": [
+                "Visual Studio",
+                "Visual Studio Code",
+                "NetBeans",
+                "Eclipse",
+                "Android Studio",
+                "Unity",
+                "Entre otros"
+            ]
+        }
+    ],
+    "seEnseña": [
+        "Diseño de interfaces, en distintos lenguajes y entornos de desarrollo.",
+        "Creación de algoritmos.",
+        "Uso de metodologías agiles como SCRUM, Kanban, DevOps para el desarrollo de software."
+    ],
+    "problemasInscripcion": [
+        {
+            "mensajeAyuda": "¿Necesitas ayuda para completar tu proceso de inscripción? Comunícate con tu jefe de carrera, dejamos a tu disposición sus datos, le puedes contactar vía correo electrónico o teléfono.",
+            "nombreJefeCarrera": "Mtra. Anabel Gutiérrez Espinoza",
+            "division": "División de Ingeniería en Sistemas Computacionales",
+            "telefono": "(644) 410-8650 ext. 1301",
+            "correo": "isc@itesca.edu.mx"
+        }
+    ],
+    "horario": "Puedes visualizar tu horario desde el Portal Académico https://www.itesca.edu.mx/portalacademico/index.asp en el apartado 'Consulta de Horario del Periodo…', ingresa con tu matrícula y CIP.",
+    "credencial": [
+        {
+            "credencialDigital": "Te recordamos que tu credencial digital tiene validez oficial y puede ser verificada a través de código QR, la puedes descargar desde el Portal Académico https://www.itesca.edu.mx/portalacademico/index.asp."
+        },
+        {
+            "credencialFisica": "Si requieres tu credencial plástica, puedes solicitarla desde el Portal Académico en el apartado 'Solicitar Credencial Impresa', ingresa con tu matrícula y CIP."
+        }
+    ],
+    "clubes": [
+        "Itesca Gaming",
+        "Itesca Anime"
+    ],
+    "habilidadesTecnicasADesarrollar": [
+        {
+            "especialidad": "Software",
+            "habilidades": [
+                "Resolver problemas algorítmicos seleccionando y aplicando herramientas matemáticas e ingenieriles para el modelado, diseño y desarrollo de tecnología computacional.",
+                "Diseñar, desarrollar y administrar tecnologías de información y comunicaciones que cumplan con normas y estándares vigentes con el fin de apoyar la productividad y competitividad de las organizaciones.",
+                "Coordinar y participar en equipos de trabajo dirigidos a desarrollar soluciones que involucren el uso y aplicación de las Tecnologías de la Información y Comunicaciones.",
+                "Reconocer la necesidad permanente de conocimiento adicional y tener la habilidad para localizar, evaluar, integrar y aplicar este conocimiento adecuadamente en proyectos del área de TIC´s o de emprendimiento.",
+                "Desempeñar sus actividades profesionales considerando los aspectos legales, éticos, sociales y de desarrollo sustentable, considerando el contexto global.",
+                "Comunicarse efectivamente de forma oral y escrita con diferentes audiencias."
+            ],
+            "paginaDeConsulta": "https://www.itesca.edu.mx/modulos/oferta/licenciatura/views/iscs.php"
+        },
+        {
+            "especialidad": "Producción Multimedia",
+            "habilidades": [
+                "Resolver problemas algorítmicos seleccionando y aplicando herramientas matemáticas e ingenieriles para el modelado, diseño y desarrollo de tecnología computacional.",
+                "Diseñar, desarrollar y administrar tecnologías de información y comunicaciones que cumplan con normas y estándares vigentes con el fin de apoyar la productividad y competitividad de las organizaciones.",
+                "Coordinar y participar en equipos de trabajo dirigidos a desarrollar soluciones que involucren el uso y aplicación de las Tecnologías de la Información y Comunicaciones.",
+                "Reconocer la necesidad permanente de conocimiento adicional y tener la habilidad para localizar, evaluar, integrar y aplicar este conocimiento adecuadamente en proyectos del área de TIC's o de emprendimiento.",
+                "Desempeñar sus actividades profesionales considerando los aspectos legales, éticos, sociales y de desarrollo sustentable, considerando el contexto global.",
+                "Comunicarse efectivamente de forma oral y escrita con diferentes audiencias."
+            ],
+            "paginaDeConsulta": "https://www.itesca.edu.mx/modulos/oferta/licenciatura/views/iscm.php"
+        }
+    ],
+    "becas": "Puedes consultar las convocatorias para becas que aplican en el plantel en el siguiente enlace: https://www.itesca.edu.mx/modulos/estudiantes/becas.php",
+    "concursosProgramación": "¡Sí! Puedes estar atento a las convocatorias en los medios de comunicación oficiales de ISC. https://instagram.com/isc_itesca"
 }
