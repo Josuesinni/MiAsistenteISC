@@ -23,7 +23,7 @@ function App() {
     setError(null);
     setIsLoading(true);
     try {
-      const response = await fetch("/data/informacion-universidad.json");
+      const response = await fetch("./data/informacion-universidad.json");
       if (!response.ok) {
         throw new Error(
           "Ocurrio un error al cargar la información de la universidad."
@@ -65,7 +65,7 @@ function App() {
       const errorMessage =
         e instanceof Error
           ? e.message
-          : "A ocurrido un error durante la inicialización.";
+          : "Ha ocurrido un error durante la inicialización.";
       console.error(errorMessage);
       setError(errorMessage);
       setMessages([
@@ -104,12 +104,12 @@ function App() {
       setMessages((prev) => [...prev, modelResponse]);
     } catch (e) {
       const errorMessage =
-        e instanceof Error ? e.message : "An unknown error occurred.";
+        e instanceof Error ? e.message : "Se ha producido un error desconocido.";
       console.error(e);
-      setError("Failed to get a response from the model.");
+      setError("Falló al obtener respuesta del modelo.");
       const errorResponse: ChatMessage = {
         role: 'system',
-        text: `Sorry, something went wrong. ${errorMessage}`,
+        text: `Lo sentimos, algo ha salido mal. ${errorMessage}`,
       };
       setMessages((prev) => [...prev, errorResponse]);
     } finally {
@@ -188,12 +188,12 @@ function App() {
   };
   return (
     <div className="flex flex-col h-[calc(100vh-4rem)] max-w-4xl mx-auto p-2 sm:p-4">
-      <img src="/ITESCALOGO.png" alt="" width={100}  className="absolute"/>
+      <img src="./ITESCALOGO.png" alt="" width={100}  className="absolute"/>
 
       <header className="p-4 border-b border-gray-200 dark:border-gray-700">
         <h1 className="text-2xl font-bold text-center text-gray-800 dark:text-white inline-flex items-center gap-2">
           Mi Asistente
-          <img src="/ISCLOGO.png" alt="" width={48} />
+          <img src="./ISCLOGO.png" alt="" width={48} />
         </h1>
       </header>
 
