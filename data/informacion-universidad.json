@@ -1,0 +1,307 @@
+{
+    "nombreUniverdad": "Instituto Tecnológico Superior de Cajeme",
+    "nombreUniversidadAbreviado": "ITESCA",
+    "ubicacion": "Miguel Alemán 203",
+    "fechaCreacion": "25 de noviembre de 1996",
+    "carrera": "Ingeniería en Sistemas Computacionales",
+    "requisitosIngreso": [
+        "Haber cursado y acreditado el 100% de los estudios de nivel medio superior.",
+        "Demostrar interés por el programa educativo que desea estudiar, conocer el perfil de egreso y plan de estudios del mismo, así como la infraestructura y servicios que ofrece la Institución.",
+        "Demostrar competencias genéricas predictivas en las áreas de pensamiento matemático, pensamiento analítico, estructura de la lengua y comprensión lectora, ya sea mediante examen CENEVAL o curso de nivelación."
+    ],
+    "especialidades": [
+        {
+            "nombre": "Software",
+            "perfilEgreso": [
+                "Comprende el modelado de negocios en las organizaciones para realizar el correcto análisis de un software considerando las herramientas, procesos y métricas que permitan estimar y controlar de manera precisa el proyecto de desarrollo",
+                "Aplica técnicas avanzadas como diseño de patrones y estilos arquitectónicos para el aumento de la productividad en la construcción de software, mejorando la calidad de sus productos considerando técnicas y estándares de desarrollo actuales.",
+                "Aplica técnicas, gestiona verificaciones y validaciones al proceso y al producto de software para detectar fallas en el desarrollo del mismo, considerando los aspectos de revisión y pruebas como parte del ciclo de vida utilizando metodologías e implantación de modelo de aseguramiento de calidad.",
+                "Desarrolla e implementa las aplicaciones con tecnologías móviles para ofrecer accesibilidad mediante solución de software innovadoras sin importar el tiempo y espacio para su uso considerando marcos de trabajos y plataformas líderes en el mercado.",
+                "Desarrolla e implementa las aplicaciones de escritorio para ofrecer soluciones innovadoras hechas a la medida que requieran poder de cómputo, considerando marcos de trabajos y plataformas líderes en el mercado.",
+                "Desarrolla e implementa las aplicaciones web orientadas a servicios para ofrecer soluciones de software empresariales distribuidas considerando marcos de trabajos y plataformas de desarrollo web líderes en el mercado.",
+                "Comprende las tecnologías y tendencias que tienen mayor impacto o que presentan mayor potencial para que brinde asesoría y consultoría a las organizaciones considerando las tecnologías emergentes en el mercado"
+            ]
+        },
+        {
+            "nombre": "Producción Multimedia",
+            "perfilEgreso": [
+                "Aplica las técnicas de representación y visualización de objetos para el desarrollo de proyectos multimedia considerando los principios básicos del diseño gráfico digital.",
+                "Aplica técnicas de edición de imágenes, fotografía, audio y video digital, para su utilización en proyectos multimedia utilizando diversas técnicas, así como herramientas de vanguardia.",
+                "Aplica técnicas de representación y visualización de objetos en tres dimensiones para desarrollar modelos de simulación e interfaces hombre-máquina utilizando software de vanguardia.",
+                "Planea y prepara contenidos para el diseño de sitios web enfocados a una audiencia definida por los requerimientos de los clientes considerando los factores básicos de usabilidad web.",
+                "Comprende la forma correcta del diseño para desarrollar aplicaciones multimedia interactivas considerando los diferentes elementos que la integran.",
+                "Comprende los conceptos y modelos, para su aplicación en el proceso de desarrollo de videojuegos considerando los diversos patrones de diseño.",
+                "Identifica la estructura gráfica y de comunicación de instancias para el desarrollo de un videojuego utilizando la metodología adecuada."
+            ]
+        }
+    ],
+    "planesEstudio": [
+        {
+            "especialidad": "Software",
+            "materias": [
+                {
+                    "semestre": 1,
+                    "materias": [
+                        "Calculo Diferencial",
+                        "Fundamentos de Programación",
+                        "Taller de Ética",
+                        "Matemáticas Discretas",
+                        "Taller de Administración",
+                        "Fundamentos de Investigación",
+                        "Actividades Complementarias",
+                        "Lengua Extranjera I"
+                    ]
+                },
+                {
+                    "semestre": 2,
+                    "materias": [
+                        "Calculo Integral",
+                        "Programación Orientada a Objetos",
+                        "Contabilidad Financiera",
+                        "Química",
+                        "Algebra Lineal",
+                        "Probabilidad y Estadística",
+                        "Actividades Complementarias",
+                        "Lengua Extranjera II"
+                    ]
+                },
+                {
+                    "semestre": 3,
+                    "materias": [
+                        "Calculo Vectorial",
+                        "Estructura de Datos",
+                        "Programación Web",
+                        "Investigación de Operaciones",
+                        "Desarrollo Sustentable",
+                        "Física General",
+                        "Actividades Complementarias",
+                        "Lengua Extranjera III"
+                    ]
+                },
+                {
+                    "semestre": 4,
+                    "materias": [
+                        "Ecuaciones Diferenciales",
+                        "Métodos Numéricos",
+                        "Tópicos Avanzados de Programación",
+                        "Fundamentos de Base De Datos",
+                        "Simulación",
+                        "Principios Eléctricos y Aplicaciones Digitales",
+                        "Actividades Complementarias",
+                        "Lengua Extranjera IV"
+                    ]
+                },
+                {
+                    "semestre": 5,
+                    "materias": [
+                        "Graficación",
+                        "Fundamentos de Telecomunicaciones",
+                        "Sistemas Operativos",
+                        "Taller De Bases De Datos",
+                        "Fundamentos Ingeniería de Software",
+                        "Arquitectura de Computadoras",
+                        "Actividades Complementarias"
+                    ]
+                },
+                {
+                    "semestre": 6,
+                    "materias": [
+                        "Lenguajes y Autómatas I",
+                        "Redes de Computadoras",
+                        "Taller de Sistemas Operativos",
+                        "Administración de Bases De Datos",
+                        "Ingeniería de Software",
+                        "Lenguajes de Interfaz",
+                        "Pruebas de Software"
+                    ]
+                },
+                {
+                    "semestre": 7,
+                    "materias": [
+                        "Lenguajes y Autómatas II",
+                        "Conmutación y Enrutamiento de Redes de Datos",
+                        "Taller de Investigación I",
+                        "Gestión de Proyectos de Software",
+                        "Sistemas Programables",
+                        "Cómputo Móvil",
+                        "Tópicos Avanzados de Programación Web",
+                        "Servicio Social"
+                    ]
+                },
+                {
+                    "semestre": 8,
+                    "materias": [
+                        "Programación Lógica y Funcional",
+                        "Administración de Redes",
+                        "Taller De Investigación II",
+                        "Cultura Empresarial",
+                        "Tecnologías de Programación",
+                        "Tendencias y Tecnologías Emergentes",
+                        "Diseño de Interfaz"
+                    ]
+                },
+                {
+                    "semestre": 9,
+                    "materias": [
+                        "Inteligencia Artificial",
+                        "Tópicos de Seguridad",
+                        "Residencia Profesional"
+                    ]
+                }
+            ]
+        },
+        {
+            "especialidad": "Producción Multimedia",
+            "materias": [
+                {
+                    "semestre": 1,
+                    "materias": [
+                        "Calculo Diferencial",
+                        "Fundamentos de Programación",
+                        "Taller de Ética",
+                        "Matemáticas Discretas",
+                        "Taller de Administración",
+                        "Fundamentos de Investigación",
+                        "Actividades Complementarias",
+                        "Lengua Extranjera I"
+                    ]
+                },
+                {
+                    "semestre": 2,
+                    "materias": [
+                        "Calculo Integral",
+                        "Programación Orientada a Objetos",
+                        "Contabilidad Financiera",
+                        "Química",
+                        "Algebra Lineal",
+                        "Probabilidad y Estadística",
+                        "Actividades Complementarias",
+                        "Lengua Extranjera II"
+                    ]
+                },
+                {
+                    "semestre": 3,
+                    "materias": [
+                        "Calculo Vectorial",
+                        "Estructura de Datos",
+                        "Programación Web",
+                        "Investigación de Operaciones",
+                        "Desarrollo Sustentable",
+                        "Física General",
+                        "Actividades Complementarias",
+                        "Lengua Extranjera III"
+                    ]
+                },
+                {
+                    "semestre": 4,
+                    "materias": [
+                        "Ecuaciones Diferenciales",
+                        "Métodos Numéricos",
+                        "Tópicos Avanzados de Programación",
+                        "Fundamentos de Base De Datos",
+                        "Simulación",
+                        "Principios Eléctricos y Aplicaciones Digitales",
+                        "Actividades Complementarias",
+                        "Lengua Extranjera IV"
+                    ]
+                },
+                {
+                    "semestre": 5,
+                    "materias": [
+                        "Graficación",
+                        "Fundamentos de Telecomunicaciones",
+                        "Sistemas Operativos",
+                        "Taller De Bases De Datos",
+                        "Fundamentos Ingeniería de Software",
+                        "Arquitectura de Computadoras",
+                        "Actividades Complementarias"
+                    ]
+                },
+                {
+                    "semestre": 6,
+                    "materias": [
+                        "Lenguajes y Autómatas I",
+                        "Redes de Computadoras",
+                        "Taller de Sistemas Operativos",
+                        "Administración de Bases De Datos",
+                        "Ingeniería de Software",
+                        "Lenguajes de Interfaz",
+                        "Fundamentos de Diseño Digital"
+                    ]
+                },
+                {
+                    "semestre": 7,
+                    "materias": [
+                        "Lenguajes y Autómatas II",
+                        "Conmutación y Enrutamiento de Redes de Datos",
+                        "Taller de Investigación I",
+                        "Gestión de Proyectos de Software",
+                        "Sistemas Programables",
+                        "Interfaces Web y Dispositivos Móviles",
+                        "Edición de Imágenes, Audio y Video Digital",
+                        "Servicio Social"
+                    ]
+                },
+                {
+                    "semestre": 8,
+                    "materias": [
+                        "Programación Lógica y Funcional",
+                        "Administración de Redes",
+                        "Taller De Investigación II",
+                        "Cultura Empresarial",
+                        "Cómputo Móvil",
+                        "Modelado y Animación en 3D",
+                        "Diseño Multimedia Interactivo"
+                    ]
+                },
+                {
+                    "semestre": 9,
+                    "materias": [
+                        "Inteligencia Artificial",
+                        "Desarrollo de Videojuegos",
+                        "Residencia Profesional"
+                    ]
+                }
+            ]
+        }
+    ],
+    "campoLaboral": [
+        {
+            "especialidad": "Software",
+            "oportunidades": [
+                "En el nivel gerencial, administrando personal y equipos de cómputo.",
+                "En las áreas de análisis, diseño y desarrollo e implantación de proyectos de software, siguiendo estándares de calidad de la ingeniería de software de cualquier organización.",
+                "Con consultorías o instructor(a) independiente en el desarrollo de proyectos de software.",
+                "En la función de docencia e investigación en las instituciones de niveles medio superior y superior."
+            ]
+        },
+        {
+            "especialidad": "Producción Multimedia",
+            "oportunidades": [
+                "En organizaciones públicas o privadas de producción de videos, creación de contenidos, broadcasting, imagen corporativa, publicidad y comunicación audiovisual.",
+                "En las áreas de análisis, diseño y desarrollo e implantación de sistemas de información potenciados con facilidades de multimedia, considerando estándares de la industria de los medios digitales.",
+                "Trabajando como consultor(a) e instructor(a) independiente, en las áreas de servicios de imagen digital, comunicación audiovisual, publicidad y mercadotecnia, desarrollo de páginas web, comercialización de productos y servicios.",
+                "En la función de docencia e investigación en las instituciones de niveles medio superior y superior."
+            ]
+        }
+    ],
+    "procesoAdmision": [
+        {
+            "Paso 1": "Registrar datos para obtener ficha de aspirante en la página https://www.itesca.edu.mx/admisiones/",
+            "Paso 2": "Llenado de Cuestionario en la página",
+            "Paso 3": "Subir documentación al sistema: CURP y Kardex con calificaciones (pdf / imagen)",
+            "Paso 4": "Pagar la ficha de inscripción",
+            "Paso 5": "Imprimir la constancia de registro, es el pase para realizar la ubicación diagnóstica.",
+            "Paso 6": "Después de registrar asistencia en la ubicación diagnóstica, se habilita automáticamente el módulo de inscripciones en la página https://www.itesca.edu.mx/admisiones/}"
+        }
+    ],
+    "modalidades":"En modalidad presencial y virtual.",
+    "duracionCarrera":"9 semestres",
+    "contactoJefeCarrera": [
+        {
+            "nombre": "Mtra. Anabel Gutiérrez Espinoza",
+            "telefono": "(644) 410-8650 ext. 1301",
+            "correo": "isc@itesca.edu.mx"
+        }
+    ]
+}
