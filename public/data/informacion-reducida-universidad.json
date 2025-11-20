@@ -1,0 +1,115 @@
+{
+    "universidad": {
+        "nombre": "Instituto Tecnológico Superior de Cajeme",
+        "abreviatura": "ITESCA",
+        "ubicacion": "Miguel Alemán 203",
+        "fundacion": "25/11/1996",
+        "modalidades": [
+            "Presencial",
+            "Virtual"
+        ],
+        "becas": "https://www.itesca.edu.mx/modulos/estudiantes/becas.php",
+        "requisitosIngreso": [
+            "Acreditar estudios de nivel medio superior.",
+            "Conocer el plan de estudios y servicios del ITESCA.",
+            "Demostrar competencias básicas (CENEVAL o curso de nivelación)."
+        ],
+        "procesoAdmision": {
+            "pasos": [
+                "Registrar datos para obtener ficha de aspirante en la página https://www.itesca.edu.mx/admisiones/",
+                "Llenado de Cuestionario en la página",
+                "Subir documentación al sistema: CURP y Kardex con calificaciones (pdf / imagen)",
+                "Pagar la ficha de inscripción",
+                "Imprimir la constancia de registro, es el pase para realizar la ubicación diagnóstica.",
+                "Después de registrar asistencia en la ubicación diagnóstica, se habilita automáticamente el módulo de inscripciones en la página https://www.itesca.edu.mx/admisiones/"
+            ],
+            "ayudaInscripcion": {
+                "mensaje": "¿Necesitas ayuda para completar tu proceso de inscripción? Comunícate con tu jefe de carrera, dejamos a tu disposición sus datos, le puedes contactar vía correo electrónico o teléfono.",
+                "contacto": [
+                    "Mtra. Anabel Gutiérrez Espinoza",
+                    "División de Ingeniería en Sistemas Computacionales",
+                    "(644) 410-8650 ext. 1301",
+                    "isc@itesca.edu.mx"
+                ]
+            }
+        },
+        "horario": "Puedes visualizar tu horario desde el Portal Académico https://www.itesca.edu.mx/portalacademico/index.asp en el apartado 'Consulta de Horario del Periodo', ingresa con tu matrícula y CIP.",
+        "credencial": {
+            "digital": "Te recordamos que tu credencial digital tiene validez oficial y puede ser verificada a través de código QR, la puedes descargar desde el Portal Académico https://www.itesca.edu.mx/portalacademico/index.asp.",
+            "fisica": "Si requieres tu credencial plástica, puedes solicitarla desde el Portal Académico en el apartado 'Solicitar Credencial Impresa', ingresa con tu matrícula y CIP."
+        }
+    },
+    "carrera": {
+        "nombre": "Ingeniería en Sistemas Computacionales",
+        "duracion": "9 semestres",
+        "especialidades": [
+            "Software",
+            "Producción Multimedia"
+        ]
+    },
+    "contacto": {
+        "jefeCarrera": {
+            "nombre": "Mtra. Anabel Gutiérrez Espinoza",
+            "telefono": "(644) 410-8650 ext. 1301",
+            "correo": "isc@itesca.edu.mx"
+        }
+    },
+    "apredizajes": [
+        "Diseño de interfaces, en distintos lenguajes y entornos de desarrollo.",
+        "Creación de algoritmos.",
+        "Uso de metodologías agiles como SCRUM, Kanban, DevOps para el desarrollo de software."
+    ],
+    "entornosDesarrollo": {
+        "lenguajes": [
+            "HTML",
+            "Java",
+            "JS",
+            "Python",
+            "CSS",
+            "C#",
+            "C++"
+        ],
+        "entornos": [
+            "VS",
+            "VS Code",
+            "NetBeans",
+            "Eclipse",
+            "Android Studio",
+            "Unity"
+        ]
+    },
+    "clubesEstudiantiles": [
+        "Itesca Gaming",
+        "Itesca Anime"
+    ],
+    "concursosProgramación": "https://instagram.com/isc_itesca",
+    "plataformas": {
+        "moodle": "https://cursos2.e-itesca.edu.mx/ead/index.html",
+        "manual": "https://www.itesca.edu.mx/modulos/oferta/ead/index.php"
+    },
+    "consultaDatosInstitucionales": {
+        "datosDepartamento": {
+            "descripcion": "Dejamos a tu disposición los datos del departamento de Control Escolar, los puedes contactar vía correo electrónico o teléfono",
+            "url": "https://www.itesca.edu.mx/modulos/estudiantes/esc-tramites.php"
+        },
+        "telefono": "Atención Telefónica: (644) 410 8650 / Extensiones: 1202: Ventanilla, 1204: Licenciatura y Posgrado, 1215: Jefa de Departamento",
+        "email": {
+            "Ventanilla": "nvalencia@itesca.edu.mx",
+            "Licenciatura y Posgrado": "sponce@itesca.edu.mx",
+            "Jefa de Departamento": "promero@itesca.edu.mx"
+        },
+        "horario": "08:00 a 15:00 hrs."
+    },
+    "calificaciones": {
+        "descripcion": "Las calificaciones son publicadas por los docentes en el portal académico en el siguiente enlace: https://www.itesca.edu.mx/portalacademico/ Dentro del apartado Consulta de Calificaciones del Período.",
+        "opcionesConsulta": [
+            "Consulta de Calificaciones en Kardex desde el Portal Académico, ingresa con tu matrícula y CIP: https://www.itesca.edu.mx/portalacademico/index.asp",
+            "Boleta impresa de calificaciones finales con el sello del Departamento de Operación y Control Escolar. Consulta aquí los requisitos, los pasos a seguir, el costo y el horario de atención para realizar tu trámite: https://www.itesca.edu.mx/modulos/estudiantes/esc-tramites.php "
+        ]
+    },
+    "actividadesExtracurriculares": {
+        "cultura": "https://www.itesca.edu.mx/modulos/programas/cultura.php",
+        "deporte": "https://www.itesca.edu.mx/_sitioanterior/programas/deportes.asp",
+        "todos": "Te invitamos a consultar todos los programas que ITESCA ofrece para ti desde nuestra página web, en el menú superior en el apartado 'Programas'. https://www.itesca.edu.mx/index.php"
+    }
+}

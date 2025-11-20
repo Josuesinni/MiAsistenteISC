@@ -11,6 +11,9 @@ function App() {
   const [chatSession, setChatSession] = useState<Chat | null>(null);
 
   const chatContainerRef = useRef<HTMLDivElement>(null);
+  const ai = new GoogleGenAI({
+    apiKey: import.meta.env.VITE_GEMINI_API_KEY,
+  });
 
   useEffect(() => {
     if (chatContainerRef.current) {
@@ -23,7 +26,9 @@ function App() {
     setError(null);
     setIsLoading(true);
     try {
-      const response = await fetch("./data/informacion-universidad.json");
+      const response = await fetch(
+        "./data/informacion-reducida-universidad.json"
+      );
       if (!response.ok) {
         throw new Error(
           "Ocurrio un error al cargar la información de la universidad."
@@ -37,16 +42,14 @@ function App() {
                                 Debes basar tus respuestas *únicamente* en la información proporcionada en los siguientes datos JSON.
                                 No utilices ningún conocimiento externo ni inventes información.
                                 Las respuestas pueden ser formulaciones con base en la información proporcionada de los datos JSON.
-                                Si la respuesta a una pregunta no se encuentra en los datos proporcionados, debes indicar claramente que no dispones de esa información y sugerir que se pongan en contacto directamente con la universidad.
+                                Si la respuesta a una pregunta no se encuentra en los datos proporcionados, responde exactamten con "NECESITO_DATOS_COMPLETOS".
                                 Aquí tienes la información de la universidad:
                                 --- ${context} ---`;
 
       if (!import.meta.env.VITE_GEMINI_API_KEY) {
         throw new Error("API_KEY no ha sido declarada");
       }
-      const ai = new GoogleGenAI({
-        apiKey: import.meta.env.VITE_GEMINI_API_KEY,
-      });
+
       const chat = ai.chats.create({
         model: "gemini-2.5-flash",
         config: {
@@ -57,7 +60,7 @@ function App() {
       setChatSession(chat);
       setMessages([
         {
-          role: 'model',
+          role: "model",
           text: `¡Hola! Soy el chatbot de la carrera de Sistemas Computacionales. ¿Cómo puedo ayudarte el día de hoy?`,
         },
       ]);
@@ -70,7 +73,7 @@ function App() {
       setError(errorMessage);
       setMessages([
         {
-          role: 'system',
+          role: "system",
           text: `Error: No se ha podido iniciar el chatbot. ${errorMessage}`,
         },
       ]);
@@ -83,11 +86,55 @@ function App() {
     initChat();
   }, [initChat]);
 
+  async function consultaInformacionExtendida(userMessage: ChatMessage) {
+    const fullResponse = await fetch(
+      "./data/informacion-extendida-universidad.json"
+    );
+    const fullData = await fullResponse.json();
+    const contextExtended = JSON.stringify(fullData, null, 2);
+    const newSystemInstruction = `Eres un chatbot servicial y amigable del Instituto Tecnológico Superior de Cajeme. 
+                                Tu objetivo es responder a las preguntas de los estudiantes actuales o potenciales.
+                                Debes basar tus respuestas *únicamente* en la información proporcionada en los siguientes datos JSON.
+                                No utilices ningún conocimiento externo ni inventes información.
+                                Las respuestas pueden ser formulaciones con base en la información proporcionada de los datos JSON.
+                                Si la respuesta a una pregunta no se encuentra en los datos proporcionados, debes indicar claramente que no dispones 
+                                de esa información y sugerir que se pongan en contacto directamente con la universidad.
+                                Aquí tienes información adicional que no pudo ser respondida con la información general de la carrera:
+                                --- ${contextExtended} ---`;
+
+    const chat = ai.chats.create({
+      model: "gemini-2.5-flash",
+      config: { systemInstruction: newSystemInstruction },
+    });
+    try {
+      const response = await chat.sendMessage({ message: userMessage.text });
+      const modelResponse: ChatMessage = {
+        role: "model",
+        text: response.text ?? "",
+      };
+      setMessages((prev) => [...prev, modelResponse]);
+    } catch (e) {
+      const errorMessage =
+        e instanceof Error
+          ? e.message
+          : "Se ha producido un error desconocido.";
+      console.error(e);
+      setError("Falló al obtener respuesta del modelo.");
+      const errorResponse: ChatMessage = {
+        role: "system",
+        text: `Lo sentimos, algo ha salido mal. ${errorMessage}`,
+      };
+      setMessages((prev) => [...prev, errorResponse]);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   const sendMessage = async (messageText: string) => {
     if (!messageText.trim() || isLoading || !chatSession) return;
 
     const userMessage: ChatMessage = {
-      role: 'user',
+      role: "user",
       text: messageText,
     };
     setMessages((prev) => [...prev, userMessage]);
@@ -97,18 +144,24 @@ function App() {
 
     try {
       const response = await chatSession.sendMessage({ message: messageText });
-      const modelResponse: ChatMessage = {
-        role: 'model',
-        text: response.text ?? "",
-      };
-      setMessages((prev) => [...prev, modelResponse]);
+      if (response.text?.includes("NECESITO_DATOS_COMPLETOS")) {
+        await consultaInformacionExtendida(userMessage);
+      } else {
+        const modelResponse: ChatMessage = {
+          role: "model",
+          text: response.text ?? "",
+        };
+        setMessages((prev) => [...prev, modelResponse]);
+      }
     } catch (e) {
       const errorMessage =
-        e instanceof Error ? e.message : "Se ha producido un error desconocido.";
+        e instanceof Error
+          ? e.message
+          : "Se ha producido un error desconocido.";
       console.error(e);
       setError("Falló al obtener respuesta del modelo.");
       const errorResponse: ChatMessage = {
-        role: 'system',
+        role: "system",
         text: `Lo sentimos, algo ha salido mal. ${errorMessage}`,
       };
       setMessages((prev) => [...prev, errorResponse]);
@@ -127,9 +180,9 @@ function App() {
   };
 
   const MessageBubble: React.FC<{ msg: ChatMessage }> = ({ msg }) => {
-    const isUser = msg.role === 'user';
-    const isSystem = msg.role === 'system';
-    console.log(msg.role, msg.role === 'user');
+    const isUser = msg.role === "user";
+    const isSystem = msg.role === "system";
+   // console.log(msg.role, msg.role === "user");
     if (isSystem) {
       return (
         <div className="flex justify-center my-2">
@@ -188,7 +241,7 @@ function App() {
   };
   return (
     <div className="flex flex-col h-[calc(100vh-4rem)] max-w-4xl mx-auto p-2 sm:p-4">
-      <img src="./ITESCALOGO.png" alt="" width={100}  className="absolute"/>
+      <img src="./ITESCALOGO.png" alt="" width={100} className="absolute" />
 
       <header className="p-4 border-b border-gray-200 dark:border-gray-700">
         <h1 className="text-2xl font-bold text-center text-gray-800 dark:text-white inline-flex items-center gap-2">
