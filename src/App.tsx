@@ -9,8 +9,20 @@ function App() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [chatSession, setChatSession] = useState<Chat | null>(null);
-
+  const [retrySeconds, setRetrySeconds] = useState(0);
+  const [retryMessage, setRetryMessage] = useState<string | null>(null);
+  const [pendingMessage, setPendingMessage] = useState<string | null>(null);
+  const modelos = [
+    "gemini-2.0-flash-lite",
+    "gemini-2.5-flash-lite",
+    "gemini-2.5-flash",
+    "gemini-2.0-flash",
+  ];
+  const [modelIndex, setModelIndex] = useState(0);
   const chatContainerRef = useRef<HTMLDivElement>(null);
+  if (!import.meta.env.VITE_GEMINI_API_KEY) {
+    throw new Error("API_KEY no ha sido declarada");
+  }
   const ai = new GoogleGenAI({
     apiKey: import.meta.env.VITE_GEMINI_API_KEY,
   });
@@ -22,42 +34,74 @@ function App() {
     }
   }, [messages]);
 
-  const initChat = useCallback(async () => {
-    setError(null);
-    setIsLoading(true);
-    try {
-      const response = await fetch(
-        "./data/informacion-reducida-universidad.json"
+  async function createChatModel() {
+    const model = modelos[modelIndex];
+    const response = await fetch(
+      "./data/informacion-reducida-universidad.json"
+    );
+    if (!response.ok) {
+      throw new Error(
+        "Ocurrio un error al cargar la información de la universidad."
       );
-      if (!response.ok) {
-        throw new Error(
-          "Ocurrio un error al cargar la información de la universidad."
-        );
-      }
-      const universityData = await response.json();
-      const context = JSON.stringify(universityData, null, 2);
-
-      const systemInstruction = `Eres un chatbot servicial y amigable del Instituto Tecnológico Superior de Cajeme. 
-                                Tu objetivo es responder a las preguntas de los estudiantes actuales o potenciales.
-                                Debes basar tus respuestas *únicamente* en la información proporcionada en los siguientes datos JSON.
-                                No utilices ningún conocimiento externo ni inventes información.
-                                Las respuestas pueden ser formulaciones con base en la información proporcionada de los datos JSON.
-                                Si la respuesta a una pregunta no se encuentra en los datos proporcionados, responde exactamten con "NECESITO_DATOS_COMPLETOS".
-                                Aquí tienes la información de la universidad:
-                                --- ${context} ---`;
-
-      if (!import.meta.env.VITE_GEMINI_API_KEY) {
-        throw new Error("API_KEY no ha sido declarada");
-      }
-
+    }
+    const universityData = await response.json();
+    const context = JSON.stringify(universityData, null, 2);
+    const systemInstruction = `Eres un chatbot servicial y amigable del Instituto Tecnológico Superior de Cajeme. 
+    Tu objetivo es responder a las preguntas de los estudiantes actuales o potenciales. 
+    Debes basar tus respuestas *únicamente* en la información proporcionada en los siguientes datos JSON. 
+    No utilices ningún conocimiento externo ni inventes información. 
+    Las respuestas pueden ser formulaciones con base en la información proporcionada de los datos JSON. 
+    Si la respuesta a una pregunta no se encuentra en los datos proporcionados, responde exactamente con "NECESITO_DATOS_COMPLETOS". 
+    Aquí tienes la información de la universidad:
+    --- ${context} ---`;
+    try {
       const chat = ai.chats.create({
-        model: "gemini-2.5-flash",
+        model,
         config: {
           systemInstruction: systemInstruction,
         },
       });
+      return chat;
+    } catch (e) {
+      console.error("Error creando chat con modelo:", model, e);
+      throw e;
+    }
+  }
 
-      setChatSession(chat);
+  function detectQuotaType(error: any) {
+    if (!error?.message) return { type: null };
+    const msg = error.message.toLowerCase();
+    // RPM: Rate Limit por minuto
+    if (
+      msg.includes("rate limit") ||
+      msg.includes("too many requests") ||
+      msg.includes("per minute") ||
+      msg.includes("try again in")
+    ) {
+      // Extraer segundos si vienen en el mensaje
+      const secondsMatch = msg.match(/(\d+)\s*seconds/);
+      const waitSeconds = secondsMatch ? parseInt(secondsMatch[1]) : 10; // fallback 10s
+
+      return { errorType: "RPM", waitSeconds };
+    }
+    // RPD: Límite diario
+    if (
+      msg.includes("quota exceeded") ||
+      msg.includes("daily") ||
+      msg.includes("exhausted") ||
+      msg.includes("exceeded your quota")
+    ) {
+      return { errorType: "RPD" };
+    }
+
+    return { type: null };
+  }
+
+  const initChat = useCallback(async () => {
+    setError(null);
+    setIsLoading(true);
+    try {
+      setChatSession(await createChatModel());
       setMessages([
         {
           role: "model",
@@ -69,7 +113,7 @@ function App() {
         e instanceof Error
           ? e.message
           : "Ha ocurrido un error durante la inicialización.";
-      console.error(errorMessage);
+      //console.error(errorMessage);
       setError(errorMessage);
       setMessages([
         {
@@ -101,9 +145,9 @@ function App() {
                                 de esa información y sugerir que se pongan en contacto directamente con la universidad.
                                 Aquí tienes información adicional que no pudo ser respondida con la información general de la carrera:
                                 --- ${contextExtended} ---`;
-
+    const model = modelos[modelIndex];
     const chat = ai.chats.create({
-      model: "gemini-2.5-flash",
+      model,
       config: { systemInstruction: newSystemInstruction },
     });
     try {
@@ -144,6 +188,7 @@ function App() {
 
     try {
       const response = await chatSession.sendMessage({ message: messageText });
+
       if (response.text?.includes("NECESITO_DATOS_COMPLETOS")) {
         await consultaInformacionExtendida(userMessage);
       } else {
@@ -154,11 +199,49 @@ function App() {
         setMessages((prev) => [...prev, modelResponse]);
       }
     } catch (e) {
+      const { errorType, waitSeconds } = detectQuotaType(e);
+      if (errorType == "RPD") {
+        const nextModel = modelIndex + 1;
+
+        if (nextModel < modelos.length) {
+          setModelIndex(nextModel);
+          setError(
+            `Se alcanzó el límite del modelo. Cambiando al modelo ${modelos[nextModel]}...`
+          );
+          setChatSession(await createChatModel());
+          return;
+        }
+        setError(
+          "Se alcanzó el límite para todos los modelos disponibles hoy."
+        );
+        return;
+      }
+      if (errorType === "RPM") {
+        setRetrySeconds(waitSeconds || 60);
+        setRetryMessage(
+          "Has alcanzado el límite por minuto. Espera unos segundos..."
+        );
+        setPendingMessage(messageText);
+
+        // Temporizador regresivo
+        let counter = waitSeconds || 60;
+        const interval = setInterval(() => {
+          counter -= 1;
+          setRetrySeconds(counter);
+
+          if (counter <= 0) {
+            clearInterval(interval);
+          }
+        }, 1000);
+
+        setIsLoading(false);
+        return;
+      }
+
       const errorMessage =
         e instanceof Error
           ? e.message
           : "Se ha producido un error desconocido.";
-      console.error(e);
       setError("Falló al obtener respuesta del modelo.");
       const errorResponse: ChatMessage = {
         role: "system",
@@ -172,6 +255,7 @@ function App() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if(retrySeconds!=0)return;
     await sendMessage(userInput);
   };
 
@@ -182,7 +266,6 @@ function App() {
   const MessageBubble: React.FC<{ msg: ChatMessage }> = ({ msg }) => {
     const isUser = msg.role === "user";
     const isSystem = msg.role === "system";
-   // console.log(msg.role, msg.role === "user");
     if (isSystem) {
       return (
         <div className="flex justify-center my-2">
@@ -314,6 +397,31 @@ function App() {
             </div>
           </div>
         )}
+        {retryMessage && (
+          <div className="p-2 bg-white border-gray-300 border rounded-2xl mt-3">
+            <p>{retryMessage}</p>
+            <p>
+              Reintento disponible en: <b>{retrySeconds}s</b>
+            </p>
+            {retrySeconds <= 0 && pendingMessage && (
+              <button
+                onClick={() => sendMessage(pendingMessage)}
+                className="mt-2 px-4 py-2 rounded inline-flex text-gray-900 bg-white border border-gray-300 cursor-pointer"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="currentColor"
+                >
+                  <path d="M482-160q-134 0-228-93t-94-227v-7l-64 64-56-56 160-160 160 160-56 56-64-64v7q0 100 70.5 170T482-240q26 0 51-6t49-18l60 60q-38 22-78 33t-82 11Zm278-161L600-481l56-56 64 64v-7q0-100-70.5-170T478-720q-26 0-51 6t-49 18l-60-60q38-22 78-33t82-11q134 0 228 93t94 227v7l64-64 56 56-160 160Z" />
+                </svg>
+                Reintentar envío
+              </button>
+            )}
+          </div>
+        )}
       </main>
 
       <footer className="p-2 sm:p-4 border-t border-gray-200 dark:border-gray-700">
@@ -335,8 +443,8 @@ function App() {
           />
           <button
             type="submit"
-            disabled={isLoading || !userInput.trim() || !chatSession}
-            className="shrink-0 p-3 text-white rounded-full bg-gray-900 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 disabled:bg-gray-400 disabled:cursor-not-allowed dark:focus:ring-offset-gray-900 transition-colors"
+            disabled={isLoading || !userInput.trim() || !chatSession || retrySeconds!=0}
+            className="shrink-0 p-3 text-white rounded-full bg-gray-900 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 disabled:bg-gray-400 cursor-pointer disabled:cursor-not-allowed dark:focus:ring-offset-gray-900 transition-colors"
             aria-label="Send message"
           >
             <svg
@@ -351,6 +459,7 @@ function App() {
             </svg>
           </button>
         </form>
+
         {error && (
           <p className="mt-2 text-sm text-center text-red-500">{error}</p>
         )}
