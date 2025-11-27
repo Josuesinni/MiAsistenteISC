@@ -33,6 +33,9 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Debug env
+        run: cat .env
+        
       # 6. Deploy a GitHub Pages
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
