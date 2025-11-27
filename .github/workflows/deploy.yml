@@ -10,7 +10,7 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
+    enviroment: github-pages
     steps:
       # 1. Checkout del código
       - uses: actions/checkout@v3
