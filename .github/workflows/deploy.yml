@@ -10,7 +10,9 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
+    env:
+      VITE_GEMINI_API_KEY: ${{ secrets.VITE_GEMINI_API_KEY }}
+    
     steps:
       # 1. Checkout del código
       - uses: actions/checkout@v3
@@ -25,14 +27,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # 4. Inyectar tu API key en un .env temporal
-      - name: Create .env file
-        run: echo "VITE_GEMINI_API_KEY=${{ secrets.VITE_GEMINI_API_KEY }}" >> .env
-        
-      # 5. Compilar el proyecto
+      # 4. Compilar el proyecto
       - name: Build
         run: npm run build
-
+        
+      # 5. Comprobar el archivo .env
       - name: Debug env
         run: cat .env
 
