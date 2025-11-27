@@ -28,14 +28,14 @@ jobs:
       # 4. Inyectar tu API key en un .env temporal
       - name: Create .env file
         run: echo "VITE_GEMINI_API_KEY=${{ secrets.VITE_GEMINI_API_KEY }}" >> .env
-
+        
       # 5. Compilar el proyecto
       - name: Build
         run: npm run build
 
       - name: Debug env
         run: cat .env
-        
+
       # 6. Deploy a GitHub Pages
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
