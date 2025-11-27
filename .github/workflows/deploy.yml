@@ -1,0 +1,38 @@
+name: Deploy Vite app to GitHub Pages
+
+on:
+  push:
+    branches: [main]   # Cambia "main" si tu rama principal se llama diferente
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout del código
+      - uses: actions/checkout@v3
+
+      # 2. Configurar Node.js
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # 3. Instalar dependencias
+      - name: Install dependencies
+        run: npm install
+
+      # 4. Inyectar tu API key en un .env temporal
+      - name: Create .env file
+        run: echo "VITE_GEMINI_API_KEY=${{ secrets.VITE_GEMINI_API_KEY }}" >> .env
+
+      # 5. Compilar el proyecto
+      - name: Build
+        run: npm run build
+
+      # 6. Deploy a GitHub Pages
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist

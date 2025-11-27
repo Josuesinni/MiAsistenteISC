@@ -20,11 +20,12 @@ function App() {
   ];
   const [modelIndex, setModelIndex] = useState(0);
   const chatContainerRef = useRef<HTMLDivElement>(null);
-  if (!import.meta.env.VITE_GEMINI_API_KEY) {
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+  if (!apiKey) {
     throw new Error("API_KEY no ha sido declarada");
   }
   const ai = new GoogleGenAI({
-    apiKey: import.meta.env.VITE_GEMINI_API_KEY,
+    apiKey: apiKey,
   });
 
   useEffect(() => {
